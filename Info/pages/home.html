@@ -1,0 +1,435 @@
+<div id="home">
+	home页面
+<!-- 	<div class="switch">
+      <input type="checkbox"/>
+    </div> -->
+    <div class="outerDiv">
+   	    <div class="row">
+         <!-- 最右边的字体和图标 -->
+   		   <div class="col-sm-3 ">
+   			<div class="totleDiv bg-white">
+   				 <div class="iconDiv bg-green">
+   					<i class="iconfont icon-yun"></i>
+   				</div>
+   				<div class="numDiv">
+               <span>99.9%</span>        
+               <small>SERVER UPTIME</small>
+               </div>
+   			</div>
+            <div class="totleDiv bg-white">
+               <div class="iconDiv bg-green">
+                  <i class="iconfont icon-ai-user"></i>
+               </div>
+               <div class="numDiv">
+               <span>99.9%</span>        
+               <small>SERVER UPTIME</small>
+               </div>
+
+   		</div>
+         <div class="totleDiv bg-white">
+               <div class="iconDiv bg-green">
+                  <i class="iconfont icon-18"></i>
+               </div>
+               <div class="numDiv">
+               <span>99.9%</span>        
+               <small>SERVER UPTIME</small>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6">
+            <div class="visDiv">
+               <div id ="visContainer"></div>
+               <div class="numDiv">
+                  <span>14.85%</span>
+                  <small>MORE Visitors</small>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-3">
+           <div class="uptimeDiv">
+            <div id="uptimeContainer"></div>
+             <div class="numDiv">
+              <span>95.8%</span>
+              <small>More Visitors</small>
+             </div>
+            </div>
+            <div class="salesDiv">
+           <div id="salesContainer"></div>
+          <div class="numDiv">
+         <span>320,45</span> 
+        <small>More Visitors</small>
+     </div>
+    </div> 
+   </div>
+   <div class="col-sm-6">
+   	<div class="views">
+   		<div id="PageViews"></div>
+   	</div>
+   </div>
+   <div class="col-sm-6">
+   	<div class="liulanqiDiv">
+   	 <div id="viewsContainer"></div>
+   	</div>
+   </div>
+  </div>
+ </div>
+</div>
+<script>
+$(function(){
+  //画图
+  drawVis();
+   drawUptime();
+   drawSales();
+   drawViews();
+   drawContainer();
+
+    function drawVis(){
+        var chart = Highcharts.chart('visContainer', {
+            chart:{
+               // 设置图表和区域的距离
+               margin:[0,0,0,0],
+            },
+            colors:['#63b919','#cccccc'],
+            title: {
+               text: ''
+            },
+            credits:{
+               enabled:false
+            },
+            xAxis: {
+               visible:false,
+               title: {
+                  text: ''
+               }
+            },
+            yAxis: {
+               visible:false,
+               title: {
+                  text: ''
+               }
+            },
+            legend: {
+               // enabled:false,
+               floating:true,
+               layout: 'vertical',
+               align: 'right',
+               verticalAlign: 'top'
+            },
+            plotOptions: {
+               series: {
+                  label: {
+                     connectorAllowed: false
+                  },
+                  pointStart: 2010
+               }
+            },
+            series: [{
+               name: 'PageViews',
+               data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175,43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+            }, {
+               name: 'Visitors',
+               data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434,24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+            }]
+        });
+    }
+		   function drawUptime(){
+		   // 柱状图
+		   var chart = Highcharts.chart('uptimeContainer', {
+		    colors:['#7c30bc'],
+		    chart: {
+		     type: 'column',
+		     margin:[0,0,0,0],
+		    },
+		    credits:{
+		     enabled:false
+		    },
+		    title: {
+		     text: ''
+		    },
+		    xAxis: {
+		     type: 'category',
+		     visible:false,
+		    },
+		    yAxis: {
+		     visible:false,
+		     title: {
+		      text: ''
+		     }
+		    },
+		    legend: {
+		     enabled: false
+		    },
+		    plotOptions: {
+		     series: {
+		      borderWidth: 0,
+		      dataLabels: {
+		       // enabled: true,
+		       format: '{point.y:.1f}%'
+		      }
+		     }
+		    },
+		    tooltip: {
+		     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+		     pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+		    },
+		    series: [{
+		     name: 'Uptime',
+		     colorByPoint: true,
+		     data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6],
+		    }],
+		   });
+		  }
+		   function drawSales(){
+					var chart = Highcharts.chart('salesContainer', {
+		    // colors:[''],
+		    credits:{
+		     enabled:false
+		    },
+		    chart: {
+		     margin : [0,0,0,100]
+		    },
+		    title: {
+		     floating:true,
+		     text: ''
+		    },
+		    tooltip: {
+		     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		    },
+		    plotOptions: {
+		     pie: {
+		      allowPointSelect: true,
+		      cursor: 'pointer',
+		      dataLabels: {
+		       enabled: false,
+		       format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+		       style: {
+		        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+		       }
+		      },
+		     }
+		    },
+		    series: [{
+		     type: 'pie',
+		     innerSize: '60%',
+		     name: 'sales',
+		     data: [
+		      ['Firefox',45.0],
+		      ['IE',26.8],
+		      ['Chrome',12.8],
+		      ['Safari',8.5],
+		      ['Opera',6.2],
+		      ['其他',0.7]
+		     ]
+		    }]
+		   });
+		    }
+		    function drawViews(){
+		    	var chart = Highcharts.chart('PageViews',{
+		    		chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false,
+				type: 'pie'
+			},
+			title: {
+				text: ''
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: false
+					},
+					showInLegend: true
+				}
+			},
+			series: [{
+				name: 'Brands',
+				colorByPoint: true,
+				data: [{
+					name: 'Chrome',
+					y: 61.41,
+					sliced: true,
+					selected: true
+				}, {
+					name: 'Internet Explorer',
+					y: 11.84
+				}, {
+					name: 'Firefox',
+					y: 10.85
+				}, {
+					name: 'Edge',
+					y: 4.67
+				}, {
+					name: 'Safari',
+					y: 4.18
+				}, {
+					name: 'Other',
+					y: 7.05
+				}]
+			}]
+		    	})
+		    }
+		   function  drawContainer(){
+		   	var chart = Highcharts.chart('viewsContainer',{
+					   		chart: {
+					spacing : [40, 0 , 40, 0]
+				},
+				title: {
+					floating:true,
+					text: '圆心显示的标题'
+				},
+				tooltip: {
+					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							style: {
+								color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							}
+						},
+						point: {
+							events: {
+								mouseOver: function(e) {  // 鼠标滑过时动态更新标题
+									// 标题更新函数，API 地址：https://api.hcharts.cn/highcharts#Chart.setTitle
+									chart.setTitle({
+										text: e.target.name+ '\t'+ e.target.y + ' %'
+									});
+								}
+								//, 
+								// click: function(e) { // 同样的可以在点击事件里处理
+								//     chart.setTitle({
+								//         text: e.point.name+ '\t'+ e.point.y + ' %'
+								//     });
+								// }
+							}
+						},
+					}
+				},
+				series: [{
+					type: 'pie',
+					innerSize: '80%',
+					name: '市场份额',
+					data: [
+						{name:'Firefox',   y: 45.0, url : 'http://bbs.hcharts.cn'},
+						['IE',       26.8],
+						{
+							name: 'Chrome',
+							y: 12.8,
+							sliced: true,
+							selected: true,
+							url: 'http://www.hcharts.cn'
+						},
+						['Safari',    8.5],
+						['Opera',     6.2],
+						['其他',   0.7]
+					]
+				}]
+			}, function(c) { // 图表初始化完毕后的会掉函数
+				// 环形图圆心
+				var centerY = c.series[0].center[1],
+					titleHeight = parseInt(c.title.styles.fontSize);
+				// 动态设置标题位置
+				c.setTitle({
+					y:centerY + titleHeight/2
+				});
+					   	})
+		   }
+		   	
+ });
+ 
+    
+						
+</script>
+<style>
+.outerDiv{
+      width: 95%;
+      margin: 0 auto;
+ }
+
+.iconDiv{
+   background:#63b919;
+} 
+.totleDiv{
+   overflow: hidden;
+   /*清除浮动*/
+   padding:10;
+   border-radius: 5px;
+   margin-top: 10px;
+   background: white;
+   height: 60px;
+   
+}
+.iconDiv{
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   text-align: center;
+   margin-top: 10px;
+   margin-left: 10px;
+
+}
+.iconDiv,.totleDiv.numDiv{
+      float: left;
+}
+.iconDiv i{
+
+   font-size: 24px;
+   color: white;
+   line-height: 50px;  
+
+   /*line-height放在一天线上*/
+  }
+
+.totleDiv .numDiv{
+   margin-left: 70px;
+   margin-top: 10px;
+}
+.numDiv span{
+   font-size: 24px;
+   line-height: 24px;
+}
+.numDiv small{
+   display: block;
+}
+.visDiv,.uptimeDiv,.salesDiv{
+  position: relative;
+ }
+#visContainer{
+ height: 200px;
+ margin-top: 10px;
+}
+ .visDiv .numDiv,.uptimeDiv .numDiv,.salesDiv .numDiv{
+ position: absolute;
+ top: 20px;
+ left: 20px;
+}
+.uptimeDiv .numDiv,.salesDiv .numDiv{
+   top: 10px;
+   left: 10px;
+}
+.visDiv .numDiv  span{
+ color: #63b919;
+}
+#uptimeContainer,#salesContainer{
+ height: 98px;
+ margin-top: 10px;
+}
+.uptimeDiv span,.salesDiv span{
+ font-size: 20px;
+} 
+.uptimeDiv span{
+ color: #7c30bc;
+}
+
+
+</style>
